@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegistrationRequest;
 use App\Models\Account\User;
+use App\Models\Auth\User as Auth;
 use DB;
+use Str;
 
 class AuthController extends Controller
 {
@@ -30,24 +32,48 @@ class AuthController extends Controller
 
     public function register(RegistrationRequest $request)
     {
-        $dataUser = $request->except('password');
+        $dataUser = $request->except(['password','role','password_confirmation']);
 
         $dataUser['verification_code'] = \Str::random(55);
 
+        $email = $request->email;
+
         $password = $request->get('password');
 
-        DB::transaction(function () use ($dataUser, $password)
-        {
+        $role = $request->get('role');
+
+        DB::beginTransaction();
+        try {
+            $userAuth = Auth::create(['email'=> $email,'password'=> bcrypt($password)]);
+
+            $dataUser['auth_id'] = $userAuth->id;
+
             $user = User::create($dataUser);
 
-            $user->auth_user()->create(['password'=> bcrypt($password)]);
+            if($role == 1){
+                $user->credit()->create(['user_id'=>$user->id,'credit_score'=>0]);
+            }else if($role == 2){
+                $user->credit()->create(['user_id'=>$user->id,'credit_score'=>40]);
+            }else if($role == 2){
+                $user->credit()->create(['user_id'=>$user->id,'credit_score'=>20]);
+            }
 
-        });
+            $userAuth->roles()->create(['user_id' => $userAuth->id, 'role_id' => $role ]);
+
+
+        DB::commit();
 
         return response()->json([
             'message'=> 'User successfully registered',
-            'user' => $dataUser
+            'user' => $dataUser,
         ], 201);
+    } catch (\Exception $e) {
+        DB::rollback();
+
+        return $e->getMessage();
+    }
+
+
     }
 
     public function refresh()

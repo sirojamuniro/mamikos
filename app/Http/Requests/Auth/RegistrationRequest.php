@@ -25,15 +25,16 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'fullname'  => 'required|string|max:32',
+            'fullname'  => 'required|string',
             'email'     => 'required|string|email|max:100|unique:auth.users',
-            'username'  => 'required|string|max:12|unique:account.users',
+            'username'  => 'required|string|unique:account.users',
             'password'  => 'required|string|confirmed|min:6',
             'gender'    => 'required',
             'dob'       => 'required|date',
             'introduction'      => 'required',
             'self_description'  => 'required',
-            'id_city'   => 'required|integer'
+            'id_city'   => 'required|integer',
+            'role'=> 'required|integer',
         ];
     }
 }

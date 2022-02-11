@@ -16,8 +16,8 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user =  auth()->user()->profile->roles->has_roles;
-            if ($user->name == "ADMIN") {
+        $user =  auth()->roles->id;
+            if ($user->id == 1) {
                 return $next($request);
         }
 
@@ -28,7 +28,7 @@ class RoleMiddleware
     {
         $response = [
             'status' => false,
-            'message' => 'Forbidden, You have not admin access',
+            'message' => 'Forbidden, You have not OWNER access',
             'data' => null
         ];
 

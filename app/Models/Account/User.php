@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use App\Models\Auth\User as UserAuth;
 use App\Models\Auth\Roles;
+use App\Models\Kos\Boarding;
 
 class User extends Model
 {
@@ -19,6 +20,7 @@ class User extends Model
     protected $table = 'users';
 
     protected $fillable=[
+        'auth_id',
         'fullname',
     	'email',
     	'email_verified_at',
@@ -33,7 +35,7 @@ class User extends Model
     	'id_city',
     ];
 
-    protected $hidden = ['verification_code', 'forgot_password_token', 'created_at', 'updated_at', 'deleted_at'];
+    protected $hidden = ['verification_code', 'forgot_password_token', 'updated_at', 'deleted_at'];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
@@ -47,12 +49,17 @@ class User extends Model
 
     public function auth_user()
     {
-        return $this->hasOne(UserAuth::class, 'email', 'email');
+        return $this->belongsTo(UserAuth::class, 'auth_id', 'id');
     }
 
-    public function roles()
+    public function credit()
     {
-        return $this->hasOne(Roles::class, 'user_id', 'id');
+        return $this->hasOne(Credit::class, 'user_id', 'id');
+    }
+
+    public function boarding()
+    {
+        return $this->hasOne(Boarding::class, 'user_id', 'id');
     }
 }
 

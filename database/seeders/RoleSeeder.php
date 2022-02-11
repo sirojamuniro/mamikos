@@ -33,6 +33,7 @@ class RoleSeeder extends Seeder
             ];
             foreach ($nameRoles as $nameRole) {
                 NameRoles::create($nameRole);
+            }
 
     }
 }

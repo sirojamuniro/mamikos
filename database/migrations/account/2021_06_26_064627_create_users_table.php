@@ -16,6 +16,7 @@ class CreateUsersTable extends Migration
         Schema::connection('account')->create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('fullname')->nullable();
+            $table->string('email')->unique();
             $table->dateTime('email_verified_at')->nullable();
             $table->string('username')->unique();
             $table->enum('gender', ['male', 'female'])->default('male')->index();
@@ -28,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unsignedBigInteger('email')->unique()->constrained('auth.users','email')->onDelete('cascade')->onUpdate('cascade')->index();
+            $table->unsignedBigInteger('auth_id')->constrained('auth.users','id')->onDelete('cascade')->onUpdate('cascade')->index();
             $table->unsignedBigInteger('id_city')->nullable()->constrained('cities')->onDelete('set null')->onUpdate('cascade')->index();
         });
     }

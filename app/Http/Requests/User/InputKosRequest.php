@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class InputTutorRequest extends FormRequest
+class InputKosRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,13 @@ class InputTutorRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'  => 'required|string|max:100|unique',
+            'description'     => '',
+            'price'  => 'required|numeric',
+            'image'  => '',
+            'user_id'    => 'required|integer',
+            'province_id'       => 'required|integer',
+            'city_id'      => 'required|integer',
         ];
     }
 }

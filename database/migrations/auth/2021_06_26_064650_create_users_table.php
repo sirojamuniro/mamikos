@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('email')->unique();
             $table->string('password');
-            $table->mediumText('token_firebase');
+            $table->mediumText('token_firebase')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

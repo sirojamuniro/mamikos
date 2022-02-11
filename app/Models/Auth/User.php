@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 use App\Models\Account\User as UserAccount;
 
@@ -14,7 +15,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     protected $connection = 'auth';
 
@@ -58,6 +59,11 @@ class User extends Authenticatable implements JWTSubject
 
     public function profile()
     {
-        return $this->belongsTo(UserAccount::class, 'email', 'email');
+        return $this->hasOne(UserAccount::class, 'auth_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasOne(Roles::class, 'user_id', 'id');
     }
 }

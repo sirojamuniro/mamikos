@@ -2,6 +2,7 @@
 
 namespace App\Models\Account;
 
+use App\Models\Kos\Boarding;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -26,5 +27,10 @@ class City extends Model
     public function province()
     {
     	return $this->belongsTo(Province::class, 'id_province', 'id');
+    }
+
+    public function boarding()
+    {
+    	return $this->hasMany(Boarding::class, 'city_id', 'id');
     }
 }

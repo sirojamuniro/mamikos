@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'password'=> bcrypt('sirojamuniro'),
         ]);
         UserAccount::create([
+            'auth_id'=>$user->id,
             'fullname'=> 'Siroja Muniro',
             'username'=> 'sirojamuniro',
             'email'=> 'munirosiroja@gmail.com',
