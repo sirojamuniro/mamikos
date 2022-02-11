@@ -14,11 +14,17 @@ class CreateCitiesTable extends Migration
     public function up()
     {
         Schema::connection('account')->create('cities', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedBigInteger('id_province')->index();
-            $table->string('name');
+            $table->bigIncrements('id');
+            $table->string('name')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unsignedBigInteger('id_province')
+            ->constrained('provinces')
+            ->onDelete('cascade')
+            ->onUpdate('cascade')
+            ->index();
+
         });
     }
 

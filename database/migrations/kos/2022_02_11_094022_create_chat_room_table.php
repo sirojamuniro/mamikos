@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableRoles extends Migration
+class CreateChatRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateTableRoles extends Migration
      */
     public function up()
     {
-        Schema::connection('auth')->create('roles', function (Blueprint $table) {
+        Schema::connection('kos')->create('chat_room', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->integer('sender_id');
+            $table->integer('receiver_id');
+            $table->mediumText('message');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +30,6 @@ class CreateTableRoles extends Migration
      */
     public function down()
     {
-        Schema::connection('auth')->dropIfExists('roles');
+        Schema::connection('kos')->dropIfExists('chat_room');
     }
 }

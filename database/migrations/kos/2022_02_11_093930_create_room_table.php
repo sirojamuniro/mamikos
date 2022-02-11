@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableRoles extends Migration
+class CreateRoomTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTableRoles extends Migration
      */
     public function up()
     {
-        Schema::connection('auth')->create('roles', function (Blueprint $table) {
+        Schema::connection('kos')->create('room', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->boolean('is_active')->default(false);
+            $table->string('token')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateTableRoles extends Migration
      */
     public function down()
     {
-        Schema::connection('auth')->dropIfExists('roles');
+        Schema::connection('kos')->dropIfExists('room');
     }
 }

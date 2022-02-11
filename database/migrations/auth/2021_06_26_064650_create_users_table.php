@@ -14,9 +14,12 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::connection('auth')->create('users', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('email')->unique();
             $table->string('password');
+            $table->mediumText('token_firebase');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

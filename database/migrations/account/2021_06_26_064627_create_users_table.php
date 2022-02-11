@@ -14,21 +14,22 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::connection('account')->create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('fullname');
-            $table->string('email')->unique();
+            $table->bigIncrements('id');
+            $table->string('fullname')->nullable();
             $table->dateTime('email_verified_at')->nullable();
             $table->string('username')->unique();
-            $table->enum('gender', ['Male', 'Female'])->default('Male')->index();
-            $table->date('dob');
-            $table->string('introduction');
-            $table->mediumText('self_description');
-            $table->boolean('is_verified')->default(false);
+            $table->enum('gender', ['male', 'female'])->default('male')->index();
+            $table->date('dob')->nullable();
+            $table->string('introduction')->nullable();
+            $table->mediumText('self_description')->nullable();
+            $table->boolean('is_verified')->default(false)->index();
             $table->string('verification_code')->nullable();
             $table->string('forgot_password_token')->nullable();
-            $table->unsignedBigInteger('id_city')->index();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unsignedBigInteger('email')->unique()->constrained('auth.users','email')->onDelete('cascade')->onUpdate('cascade')->index();
+            $table->unsignedBigInteger('id_city')->nullable()->constrained('cities')->onDelete('set null')->onUpdate('cascade')->index();
         });
     }
 
