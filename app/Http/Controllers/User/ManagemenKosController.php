@@ -14,7 +14,7 @@ class ManagemenKosController extends Controller
     {
         $this->middleware('auth:api');
 
-        $this->middleware('admin')->only(['inputKos','updateKos','deleteKos','myKos']);
+        $this->middleware('owner')->only(['inputKos','updateKos','deleteKos','myKos']);
 
     }
 

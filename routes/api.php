@@ -26,14 +26,11 @@ Route::group(['middleware' => 'api', 'prefix'=> 'auth'], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('register', [AuthController::class, 'register']);
-    Route::put('editQuestion/{id}', [ManageQuestion::class, 'editQuestion']);
     Route::get('question', [ManageQuestion::class, 'getQuestion']);
     Route::post('search', [ManagemenKosController::class, 'searchKos']);
-    Route::post('searchbycategory', [SearchQuestion::class, 'searchQuestionByCategory']);
-    Route::delete('deletequestion/{id}', [ManageQuestion::class, 'deleteQuestion']);
     Route::get('authme',[ManagemenKosController::class, 'authme']);
 });
-Route::group(['middleware' => ['api','admin'], 'prefix'=> 'auth'], function ($router) {
+Route::group(['middleware' => ['api','owner'], 'prefix'=> 'auth'], function ($router) {
     Route::post('input-kos', [ManagemenKosController::class, 'inputKos']);
     Route::put('update-kos/{id}', [ManagemenKosController::class, 'updateKos']);
     Route::delete('delete-kos/{id}', [ManagemenKosController::class, 'deleteKos']);
