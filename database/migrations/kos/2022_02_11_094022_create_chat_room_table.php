@@ -15,9 +15,9 @@ class CreateChatRoomTable extends Migration
     {
         Schema::connection('kos')->create('chat_room', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('sender_id');
-            $table->integer('receiver_id');
-            $table->mediumText('message');
+            $table->integer('sender_id')->nullable()->index();
+            $table->integer('receiver_id')->nullable()->index();
+            $table->mediumText('message')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -41,24 +41,23 @@ class CreditMonth extends Command
     public function handle()
     {
         $users = User::with('auth_user')->get();
+
         foreach($users as $user){
-          $idRole=  $user->auth_user->role_id;
 
-          if($idRole == 1){ 
-            $creditUser = Credit::where('user_id',$user->id)->first();
-            $sum = (int) $creditUser->credit_score + 0;
+          $auth=  Auth::findOrFail($user->id);
+           $idRole = $auth->roles->role_id;
 
-          }if($idRole == 2){ 
+            if($idRole == 2){
             $creditUser = Credit::where('user_id',$user->id)->first();
             $sum = (int) $creditUser->credit_score + 40;
-            
-          }if($idRole == 3){ 
+            $update= Credit::where('user_id',$user->id)->update(['credit_score'=>$sum]);
+
+          }if($idRole == 3){
             $creditUser = Credit::where('user_id',$user->id)->first();
             $sum = (int) $creditUser->credit_score + 20;
-            
+            $update= Credit::where('user_id',$user->id)->update(['credit_score'=>$sum]);
+
           }
-                $update= Credit::where('user_id',$user->id)->update(['credit_score'=>$sum]);
-            
         }
     }
 }

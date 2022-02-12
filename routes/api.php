@@ -3,9 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\User\ManagemenKos;
+use App\Http\Controllers\User\ManagemenKosController;
 use App\Http\Controllers\Question\SearchQuestion;
-use App\Http\Controllers\User\AddTutor;
+use App\Http\Controllers\User\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,14 +28,20 @@ Route::group(['middleware' => 'api', 'prefix'=> 'auth'], function ($router) {
     Route::post('register', [AuthController::class, 'register']);
     Route::put('editQuestion/{id}', [ManageQuestion::class, 'editQuestion']);
     Route::get('question', [ManageQuestion::class, 'getQuestion']);
-    Route::post('search', [ManagemenKos::class, 'searchKos']);
+    Route::post('search', [ManagemenKosController::class, 'searchKos']);
     Route::post('searchbycategory', [SearchQuestion::class, 'searchQuestionByCategory']);
     Route::delete('deletequestion/{id}', [ManageQuestion::class, 'deleteQuestion']);
-    Route::get('authme',[ManagemenKos::class, 'authme']);
+    Route::get('authme',[ManagemenKosController::class, 'authme']);
 });
 Route::group(['middleware' => ['api','admin'], 'prefix'=> 'auth'], function ($router) {
-    Route::post('input-kos', [ManagemenKos::class, 'inputKos']);
-    Route::put('update-kos/{id}', [ManagemenKos::class, 'updateKos']);
-    Route::delete('delete-kos/{id}', [ManagemenKos::class, 'deleteKos']);
-    Route::get('my-kos', [ManagemenKos::class, 'myKos']);
+    Route::post('input-kos', [ManagemenKosController::class, 'inputKos']);
+    Route::put('update-kos/{id}', [ManagemenKosController::class, 'updateKos']);
+    Route::delete('delete-kos/{id}', [ManagemenKosController::class, 'deleteKos']);
+    Route::get('my-kos', [ManagemenKosController::class, 'myKos']);
+});
+
+Route::group(['middleware' => ['api'], 'prefix'=> 'message'], function ($router) {
+    Route::post('', [ChatController::class, 'sendMessage']);
+    Route::get('/{id}', [ChatController::class, 'getMessage']);
+
 });

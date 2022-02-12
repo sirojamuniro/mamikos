@@ -6,6 +6,8 @@ use Illuminate\Database\Seeder;
 use App\Models\Auth\User;
 use App\Models\Account\User as UserAccount;
 use App\Models\Auth\Roles;
+use App\Models\Account\Credit;
+use DB;
 
 class UserSeeder extends Seeder
 {
@@ -16,14 +18,18 @@ class UserSeeder extends Seeder
      */
     public function run()
 {
+    DB::beginTransaction();
+    try {
 
-        Roles::create(['user_id' => 1, 'role_id' => 1]);
 
         $user = User::create([
             'email'=> 'munirosiroja@gmail.com',
             'password'=> bcrypt('sirojamuniro'),
         ]);
-        UserAccount::create([
+
+        Roles::create(['user_id' => $user->id, 'role_id' => 1]);
+
+       $account= UserAccount::create([
             'auth_id'=>$user->id,
             'fullname'=> 'Siroja Muniro',
             'username'=> 'sirojamuniro',
@@ -33,8 +39,17 @@ class UserSeeder extends Seeder
             'introduction'=>'saya sirojamuniro',
             'self_description'=>'saya sirojamuniro',
             'id_city'=>1
-
         ]);
+        $account->credit()->create(['user_id'=>$account->id,'credit_score'=>0]);
+
+        DB::commit();
+
+    }   catch (\Exception $e) {
+        DB::rollback();
+
+        return $e->getMessage();
 
     }
+}
+
 }

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Account\User;
 use App\Models\Kos\Boarding;
 
-class ManagemenKos extends Controller
+class ManagemenKosController extends Controller
 {
     public function __construct()
     {
@@ -37,7 +37,7 @@ class ManagemenKos extends Controller
         return  $this->handleResponse(200, 'success', $result);
     }
 
-    
+
     public function updateKos(InputKosRequest $request,$id)
     {
         $boarding = $request->except('user_id');
@@ -66,7 +66,7 @@ class ManagemenKos extends Controller
     }
 
     public function searchKos(Request $request)
-    {   
+    {
        $name = $request->name;
        $city = $request->city_id;
        $province = $request->province_id;
@@ -77,7 +77,7 @@ class ManagemenKos extends Controller
        $priceSort = $sort != "" ? $sort : "asc";
         if($name){
         $result = Boarding::where('name','like','%' . $name . '%');
-        
+
         }
         if($city){
             $result = $result->where('city_id', $city);
@@ -87,7 +87,7 @@ class ManagemenKos extends Controller
 
         }
         if($price){
-           
+
             $range= explode(":", $price);
             // var_dump($range);
             if(count($range) > 1){
@@ -98,7 +98,7 @@ class ManagemenKos extends Controller
             else
             {
             $priceStart=(int) $range[0];
-            
+
             $result = $result->where('price',$priceStart);
             }
         }
