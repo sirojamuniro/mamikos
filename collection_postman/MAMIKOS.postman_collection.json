@@ -1,0 +1,1002 @@
+{
+	"info": {
+		"_postman_id": "12805dc0-eb20-44b1-b52a-92bcec79e812",
+		"name": "MAMIKOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fullname\": \"Siroja Muniro\",\n    \"email\" : \"munirosiroja122@gmail.com\",\n    \"username\": \"sirojamuniro2132\",\n    \"password\":\"sirojamuniro\",\n    \"password_confirmation\":\"sirojamuniro\",\n    \"gender\":\"male\",\n    \"dob\":\"1997-09-04\",\n    \"introduction\":\"Saya Siroja Muniro\",\n    \"self_description\":\"Saya adalah siroja muniro\",\n    \"id_city\": 1,\n    \"role\":1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullname\": \"Siroja Muniro\",\n    \"email\" : \"munirosiroja122@gmail.com\",\n    \"username\": \"sirojamuniro2132\",\n    \"password\":\"sirojamuniro\",\n    \"password_confirmation\":\"sirojamuniro\",\n    \"gender\":\"male\",\n    \"dob\":\"1997-09-04\",\n    \"introduction\":\"Saya Siroja Muniro\",\n    \"self_description\":\"Saya adalah siroja muniro\",\n    \"id_city\": 1,\n    \"role\":1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/register",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 11 Feb 2022 15:20:13 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 11 Feb 2022 15:20:13 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "58"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Authorization, X-Requested-With, Accept, X-Token-Auth, Application"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User successfully registered\",\n    \"user\": {\n        \"fullname\": \"Siroja Muniro\",\n        \"email\": \"munirosiroja122@gmail.com\",\n        \"username\": \"sirojamuniro2132\",\n        \"password_confirmation\": \"sirojamuniro\",\n        \"gender\": \"male\",\n        \"dob\": \"1997-09-04\",\n        \"introduction\": \"Saya Siroja Muniro\",\n        \"self_description\": \"Saya adalah siroja muniro\",\n        \"id_city\": 1,\n        \"verification_code\": \"ZjBuJWRfR3F1RFxlh3p5953jqhWH8HnBXnq0GbCnT2eJbhajsdjz2Xs\",\n        \"auth_id\": 4\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "POST LOGIN",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"token\", jsonData.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\" : \"munirosiroja122@gmail.com\",\n    \"password\":\"sirojamuniro\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\" : \"munirosiroja122@gmail.com\",\n    \"password\":\"sirojamuniro\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 11 Feb 2022 15:21:29 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 11 Feb 2022 15:21:29 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Authorization, X-Requested-With, Accept, X-Token-Auth, Application"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9hdXRoXC9sb2dpbiIsImlhdCI6MTY0NDU5Mjg4OSwiZXhwIjoxNjQ0NTk2NDg5LCJuYmYiOjE2NDQ1OTI4ODksImp0aSI6Imkwb2cxQ3dWbzZqemFwRWEiLCJzdWIiOjQsInBydiI6IjEzZThkMDI4YjM5MWYzYjdiNjNmMjE5MzNkYmFkNDU4ZmYyMTA3MmUifQ.8jat7BkFK0un-HD8AeypP02QeTkxut2m6vX-IEnmg9Q\",\n    \"token_type\": \"bearer\",\n    \"expires_in\": 3600,\n    \"user\": {\n        \"id\": 4,\n        \"fullname\": \"Siroja Muniro\",\n        \"email\": \"munirosiroja122@gmail.com\",\n        \"email_verified_at\": null,\n        \"username\": \"sirojamuniro2132\",\n        \"gender\": \"male\",\n        \"dob\": \"1997-09-04\",\n        \"introduction\": \"Saya Siroja Muniro\",\n        \"self_description\": \"Saya adalah siroja muniro\",\n        \"is_verified\": false,\n        \"created_at\": \"2022-02-11T15:20:13.000000Z\",\n        \"auth_id\": 4,\n        \"id_city\": 1\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "POST INPUT KOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Kos Mataharia\",\n    \"description\":\"Kos ramah dan enak\",\n    \"price\":\"98889\",\n    \"province_id\":\"1\",\n    \"city_id\":\"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/input-kos",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"input-kos"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Kos Mataharia\",\n    \"description\":\"Kos ramah dan enak\",\n    \"price\":\"98889\",\n    \"province_id\":\"1\",\n    \"city_id\":\"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/input-kos",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"input-kos"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 00:30:06 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 00:30:06 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Authorization, X-Requested-With, Accept, X-Token-Auth, Application"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"message\": \"success\",\n    \"data\": null\n}"
+				}
+			]
+		},
+		{
+			"name": "GET AUTH ME",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/authme",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"authme"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/authme",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"authme"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 00:34:10 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 00:34:10 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "59"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Authorization, X-Requested-With, Accept, X-Token-Auth, Application"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"message\": \"success\",\n    \"data\": {\n        \"id\": 1,\n        \"email\": \"munirosiroja@gmail.com\",\n        \"token_firebase\": null,\n        \"created_at\": null,\n        \"updated_at\": null,\n        \"deleted_at\": null,\n        \"profile\": {\n            \"id\": 1,\n            \"fullname\": \"Siroja Muniro\",\n            \"email\": \"munirosiroja@gmail.com\",\n            \"email_verified_at\": null,\n            \"username\": \"sirojamuniro\",\n            \"gender\": \"male\",\n            \"dob\": \"1997-04-09\",\n            \"introduction\": \"saya sirojamuniro\",\n            \"self_description\": \"saya sirojamuniro\",\n            \"is_verified\": false,\n            \"created_at\": \"2022-02-11T14:52:24.000000Z\",\n            \"auth_id\": 1,\n            \"id_city\": 1,\n            \"city\": {\n                \"id\": 1,\n                \"name\": \"Sleman\",\n                \"id_province\": 1,\n                \"province\": {\n                    \"id\": 1,\n                    \"name\": \"Yogyakarta\"\n                }\n            }\n        },\n        \"roles\": {\n            \"id\": 1,\n            \"role_id\": 1,\n            \"user_id\": 1,\n            \"has_roles\": {\n                \"id\": 1,\n                \"name\": \"OWNER\"\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT EDIT KOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\" : \"Kos Mataharias\",\n    \"description\":\"Kos ramah sdan enaks\",\n    \"price\":\"988989\",\n    \"province_id\":\"1\",\n    \"city_id\":\"2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/update-kos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"update-kos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE KOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/delete-kos/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"delete-kos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET ALL MY KOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/my-kos",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"my-kos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SEARCH ALL KOS",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"kos matahari\",\r\n    \"city_id\":\"\",\r\n    \"province_id\":\"\",\r\n    \"price\":\"2000:1000000\",\r\n    \"sort\":\"desc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"search"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"kos matahari\",\r\n    \"city_id\":\"\",\r\n    \"province_id\":\"\",\r\n    \"price\":\"2000:1000000\",\r\n    \"sort\":\"desc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/api/auth/search",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"search"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Host",
+							"value": "localhost:8000"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 01:53:00 GMT"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 12 Feb 2022 01:53:00 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						},
+						{
+							"key": "X-Powered-By",
+							"value": "PHP/7.4.19"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache, private"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "X-RateLimit-Limit",
+							"value": "60"
+						},
+						{
+							"key": "X-RateLimit-Remaining",
+							"value": "55"
+						},
+						{
+							"key": "Access-Control-Allow-Origin",
+							"value": "*"
+						},
+						{
+							"key": "Access-Control-Allow-Headers",
+							"value": "Origin, Content-Type, Authorization, X-Requested-With, Accept, X-Token-Auth, Application"
+						},
+						{
+							"key": "Access-Control-Allow-Methods",
+							"value": "GET, POST, PUT, DELETE, OPTIONS"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": true,\n    \"message\": \"success\",\n    \"data\": [\n        {\n            \"id\": 1,\n            \"name\": \"Kos Mataharias\",\n            \"description\": \"Kos ramah sdan enaks\",\n            \"price\": \"988989.00\",\n            \"image\": null,\n            \"created_at\": \"2022-02-12T00:30:06.000000Z\",\n            \"user_id\": 4,\n            \"province_id\": 1,\n            \"city_id\": 2,\n            \"user\": {\n                \"id\": 4,\n                \"fullname\": \"Siroja Muniro\",\n                \"email\": \"munirosiroja122@gmail.com\",\n                \"email_verified_at\": null,\n                \"username\": \"sirojamuniro2132\",\n                \"gender\": \"male\",\n                \"dob\": \"1997-09-04\",\n                \"introduction\": \"Saya Siroja Muniro\",\n                \"self_description\": \"Saya adalah siroja muniro\",\n                \"is_verified\": false,\n                \"created_at\": \"2022-02-11T15:20:13.000000Z\",\n                \"auth_id\": 4,\n                \"id_city\": 1\n            },\n            \"city\": {\n                \"id\": 2,\n                \"name\": \"Bantul\",\n                \"id_province\": 1\n            },\n            \"province\": {\n                \"id\": 1,\n                \"name\": \"Yogyakarta\"\n            }\n        },\n        {\n            \"id\": 2,\n            \"name\": \"Kos Mataharia2\",\n            \"description\": \"Kos ramah dan enak\",\n            \"price\": \"988893.00\",\n            \"image\": null,\n            \"created_at\": \"2022-02-12T00:52:11.000000Z\",\n            \"user_id\": 4,\n            \"province_id\": 1,\n            \"city_id\": 3,\n            \"user\": {\n                \"id\": 4,\n                \"fullname\": \"Siroja Muniro\",\n                \"email\": \"munirosiroja122@gmail.com\",\n                \"email_verified_at\": null,\n                \"username\": \"sirojamuniro2132\",\n                \"gender\": \"male\",\n                \"dob\": \"1997-09-04\",\n                \"introduction\": \"Saya Siroja Muniro\",\n                \"self_description\": \"Saya adalah siroja muniro\",\n                \"is_verified\": false,\n                \"created_at\": \"2022-02-11T15:20:13.000000Z\",\n                \"auth_id\": 4,\n                \"id_city\": 1\n            },\n            \"city\": {\n                \"id\": 3,\n                \"name\": \"Kulon Progo\",\n                \"id_province\": 1\n            },\n            \"province\": {\n                \"id\": 1,\n                \"name\": \"Yogyakarta\"\n            }\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Send Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_receiver\":1,\r\n    \"message\":\"ya baik\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/message",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Message",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_receiver\":1,\r\n    \"message\":\"ya baik\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/message/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"message",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
