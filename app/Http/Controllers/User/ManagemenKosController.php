@@ -7,6 +7,7 @@ use App\Http\Requests\User\InputKosRequest;
 use Illuminate\Http\Request;
 use App\Models\Account\User;
 use App\Models\Kos\Boarding;
+use App\Http\Requests\User\SearchRequest;
 
 class ManagemenKosController extends Controller
 {
@@ -65,7 +66,7 @@ class ManagemenKosController extends Controller
 
     }
 
-    public function searchKos(Request $request)
+    public function searchKos(SearchRequest $request)
     {
        $name = $request->name;
        $city = $request->city_id;

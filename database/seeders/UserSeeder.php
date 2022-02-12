@@ -20,8 +20,6 @@ class UserSeeder extends Seeder
 {
     DB::beginTransaction();
     try {
-
-
         $user = User::create([
             'email'=> 'munirosiroja@gmail.com',
             'password'=> bcrypt('sirojamuniro'),
@@ -33,7 +31,7 @@ class UserSeeder extends Seeder
             'auth_id'=>$user->id,
             'fullname'=> 'Siroja Muniro',
             'username'=> 'sirojamuniro',
-            'email'=> 'munirosiroja@gmail.com',
+            'email'=> $user->email,
             'gender'=>'Male',
             'dob'=>'1997-04-09',
             'introduction'=>'saya sirojamuniro',

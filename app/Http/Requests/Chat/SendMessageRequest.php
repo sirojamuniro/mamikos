@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Auth;
+namespace App\Http\Requests\Chat;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LoginRequest extends FormRequest
+class SendMessageRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,15 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|string|email|max:100|exists:account.users,email',
-            'password' => 'required|string|min:6'
-        ];
-
-    }
-    public function messages()
-    {
-        return [
-            'email.exists' => 'email or password is invalid'
+            'id_receiver'=>'required|integer|exists:account.users,id',
+            'message'=>'string'
         ];
     }
 }

@@ -33,8 +33,8 @@ class RegistrationRequest extends FormRequest
             'dob'       => 'required|date',
             'introduction'      => 'required',
             'self_description'  => 'required',
-            'id_city'   => 'required|integer',
-            'role'=> 'required|integer',
+            'id_city'   => 'required|integer|exists:account.cities,id',
+            'role'=> 'required|integer|in:1,2,3',
         ];
     }
 }
