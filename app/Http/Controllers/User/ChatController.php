@@ -15,8 +15,6 @@ class ChatController extends Controller
     {
         $this->middleware('auth:api');
 
-        $this->middleware('admin')->only(['inputKos','updateKos','deleteKos','myKos']);
-
     }
 
     public function sendMessage(Request $request)
