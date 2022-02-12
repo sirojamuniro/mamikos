@@ -16,5 +16,6 @@ Cara Penggunaan:
 16. nama filenya MAMIKOS.postman_collection ada berada di dalam folder mamikos
 17. buka postman, pilih titik 3 dikiri atas pilih import, pilih file MAMIKOS.postman_collection
 18. jika sudah maka kembali ke terminal folder mamikos dan ketik"php artisan serve"
-19. selanjutnya tinggal memakai api di POSTMAN
+19. untuk menjalankan scheduler ketik "php artisan schedule:work"
+20. selanjutnya tinggal memakai api di POSTMAN
 
