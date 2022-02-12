@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Question\ManageQuestion;
+use App\Http\Controllers\User\ManagemenKos;
 use App\Http\Controllers\Question\SearchQuestion;
 use App\Http\Controllers\User\AddTutor;
 
@@ -26,14 +26,16 @@ Route::group(['middleware' => 'api', 'prefix'=> 'auth'], function ($router) {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('register', [AuthController::class, 'register']);
-    Route::post('inputQuestion', [ManageQuestion::class, 'inputQuestion']);
     Route::put('editQuestion/{id}', [ManageQuestion::class, 'editQuestion']);
     Route::get('question', [ManageQuestion::class, 'getQuestion']);
-    Route::post('search', [SearchQuestion::class, 'searchQuestion']);
+    Route::post('search', [ManagemenKos::class, 'searchKos']);
     Route::post('searchbycategory', [SearchQuestion::class, 'searchQuestionByCategory']);
     Route::delete('deletequestion/{id}', [ManageQuestion::class, 'deleteQuestion']);
-    Route::get('authme',[AddTutor::class, 'authme']);
+    Route::get('authme',[ManagemenKos::class, 'authme']);
 });
 Route::group(['middleware' => ['api','admin'], 'prefix'=> 'auth'], function ($router) {
-    Route::post('inputTutor', [AddTutor::class, 'inputTutor']);
+    Route::post('input-kos', [ManagemenKos::class, 'inputKos']);
+    Route::put('update-kos/{id}', [ManagemenKos::class, 'updateKos']);
+    Route::delete('delete-kos/{id}', [ManagemenKos::class, 'deleteKos']);
+    Route::get('my-kos', [ManagemenKos::class, 'myKos']);
 });

@@ -24,11 +24,11 @@ class InputKosRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'  => 'required|string|max:100|unique',
+            'name'  => 'required|string|max:100',
             'description'     => '',
             'price'  => 'required|numeric',
             'image'  => '',
-            'user_id'    => 'required|integer',
+            'user_id'    => '',
             'province_id'       => 'required|integer',
             'city_id'      => 'required|integer',
         ];

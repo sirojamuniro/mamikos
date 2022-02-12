@@ -59,7 +59,7 @@ class User extends Model
 
     public function boarding()
     {
-        return $this->hasOne(Boarding::class, 'user_id', 'id');
+        return $this->hasMany(Boarding::class, 'user_id', 'id');
     }
 }
 

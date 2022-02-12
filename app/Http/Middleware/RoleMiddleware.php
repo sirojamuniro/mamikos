@@ -16,8 +16,10 @@ class RoleMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user =  auth()->roles->id;
-            if ($user->id == 1) {
+        // var_dump(auth()->user()->roles);
+        $user =  auth()->user()->roles;
+        
+            if ($user->role_id == 1) {
                 return $next($request);
         }
 
